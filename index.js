@@ -21,8 +21,10 @@ auth().onAuthStateChanged((data) => {
 		const alertNodo = document.querySelector('#alert-test');
 		const logoutEmail = document.querySelector('#LogoutWhitEmail');
 		const loginGmail = document.querySelector('#LogoutGoogle');
+		const regisEmail = document.querySelector('#sendDataRegistro');
 		// ...
 		const clickAuthEmail = () => {
+			console.log('test');
 			const { value: valueEmail } = document.querySelector('#Email');
 			const { value: valuePassword } = document.querySelector('#Password');
 			!valueEmail || !valuePassword
@@ -37,10 +39,28 @@ auth().onAuthStateChanged((data) => {
 							showAlert(alertNodo, err);
 						});
 		};
-
+		const clickRegistro = () => {
+			const nodoShow = document.querySelector('#AlerRegis');
+			const [{ value: rEmail }, { value: rPassword }, { value: rpPassword }] =
+				document.querySelectorAll('.RPassword');
+			console.log(rEmail);
+			!rEmail || !rPassword || !rpPassword
+				? showAlert(nodoShow, 'Tiene que completar todos los campos')
+				: !(rPassword === rpPassword)
+				? showAlert(nodoShow, 'Las contraseñas no coinciden')
+				: createUserEmailAndPassword(rEmail, rPassword)
+						.then(() => {
+							logoutEmail();
+							showAlert(
+								nodoShow,
+								'Registrado correctamente<br>Por Favor verifique su casilla de Email'
+							);
+						})
+						.catch((error) => showAlert(nodoShow, error));
+		};
 		logoutEmail.addEventListener('click', clickAuthEmail);
 
-		loginGmail.addEventListener('click', async () => {
+		loginGmail.addEventListener('click', () => {
 			loginWithGoogle(providerGoogle)
 				.then((data) => {
 					showAlert(alertNodo, 'Usuario Logueado Correctamente', 'success', 10000);
@@ -48,5 +68,6 @@ auth().onAuthStateChanged((data) => {
 				})
 				.catch(console.err);
 		});
+		regisEmail.addEventListener('click', clickRegistro);
 	}
 });

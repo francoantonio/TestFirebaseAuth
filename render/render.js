@@ -57,14 +57,55 @@ export const renderHome = () => {
 						<a href="#">Olvide mi contraseña</a>
 					</div>
 					<div class="row">
-						<button type="submit" id="LogoutWhitEmail" class="btn btn-primary">
+						<button type="button" id="LogoutWhitEmail" class="btn btn-primary">
 							Ingresar
 						</button>
-						<button type="submit" id="LogoutGoogle" class="btn btn-danger">Google</button>
-						<button type="submit" id="Registro" class="btn btn-info">Registro</button>
+						<button type="button" id="LogoutGoogle" class="btn btn-danger">Google</button>
+						<button type="button" id="Registro" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Registro</button>
 					</div>
 				</form>
 				<div class="mt-2" id="alert-test"></div>
 			</div>
-			<!-- Modal Registro -->`;
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+	  <form>
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label">Email</label>
+						<input type="email" class="form-control RPassword" />
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label">Password</label>
+						<input type="password" class="form-control RPassword"  />
+					</div>
+
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label">Repeat password</label>
+						<input type="password" class="form-control RPassword" />
+					</div>
+
+
+					<div class="row">
+						<button type="button" id="sendDataRegistro"  class="btn btn-primary">
+							Enviar
+						</button>
+					</div>
+				</form>
+      </div>
+      <div class="modal-footer" id='AlerRegis'>
+       
+      </div>
+    </div>
+  </div>
+</div>
+`;
 };

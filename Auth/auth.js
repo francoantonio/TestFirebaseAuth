@@ -1,24 +1,14 @@
 import { auth } from '../index.js';
 
 export const createUserEmailAndPassword = (email, password) => {
-	return auth().createUserWithEmailAndPassword('antoniofranco.dev@gmail.com', 'ElPepe');
+	return auth().createUserWithEmailAndPassword(email, password);
 };
 
 export const loginUserEmail = (email, password) =>
 	auth().signInWithEmailAndPassword(email, password);
 
-export const loginWithGoogle = (provider) => {
-	return new Promise((resolve, reject) => {
-		auth()
-			.signInWithPopup(provider)
-			.then((data) => {
-				resolve(data);
-			})
-			.catch((error) => {
-				reject(error);
-			});
-	});
-};
+export const loginWithGoogle = (provider) => auth().signInWithPopup(provider);
+
 export const SignOutFb = () => {
 	auth()
 		.signOut()
@@ -33,7 +23,7 @@ export const currentUser = () => {
 	});
 };
 
-export const UserActiveObs = () => {
+/* export const UserActiveObs = () => {
 	auth().onAuthStateChanged((user) => {
 		if (user) {
 			// User is signed in, see docs for a list of available properties
@@ -45,4 +35,4 @@ export const UserActiveObs = () => {
 			// ...
 		}
 	});
-};
+}; */
